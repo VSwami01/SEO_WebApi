@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using SEO_WebApi.Models;
 using SEO_WebApi.Services;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SEO_WebApi.Controllers
 {
@@ -20,15 +21,15 @@ namespace SEO_WebApi.Controllers
         }
 
         [HttpGet("GetURLRanks")]
-        public SearchResult GetURLRanks(string searchText, string urlToMatch)
+        public async Task<SearchResult> GetURLRanks(string searchText, string urlToMatch)
         {
-            return _googleSearch.GetURLRanks(searchText, urlToMatch);
+            return await _googleSearch.GetURLRanksAsync(searchText, urlToMatch);
         }
 
         [HttpGet("GetAllLinks")]
-        public IEnumerable<string> GetAllLinks(string searchText)
+        public async Task<IEnumerable<string>> GetAllLinks(string searchText)
         {
-            return _googleSearch.GetAllLinks(searchText);
+            return await _googleSearch.GetAllLinksAsync(searchText);
         }
     }
 }

@@ -6,7 +6,7 @@ namespace SEO_WebApi.Services
 {
     public interface IGoogleSearch
     {
-        IEnumerable<string> GetAllLinks(string searchText);
-        SearchResult GetURLRanks(string searchText, string urlToMatch);
+        Task<IEnumerable<string>> GetAllLinksAsync(string searchText);
+        Task<SearchResult> GetURLRanksAsync(string searchText, string urlToMatch);
     }
 }

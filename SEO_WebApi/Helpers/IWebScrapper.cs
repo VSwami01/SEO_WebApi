@@ -1,7 +1,9 @@
-﻿namespace SEO_WebApi.Helpers
+﻿using System.Threading.Tasks;
+
+namespace SEO_WebApi.Helpers
 {
     public interface IWebScrapper
     {
-        string GetHTMLText(string url);
+        Task<string> GetHTMLText(string url);
     }
 }

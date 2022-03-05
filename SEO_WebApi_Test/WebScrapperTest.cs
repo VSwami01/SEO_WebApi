@@ -24,7 +24,7 @@ namespace SEO_WebApi_Test
             var expected = string.Empty;
 
             // Act
-            var actual = _webScrapper.GetHTMLText(url);
+            var actual = _webScrapper.GetHTMLText(url).Result;
 
             // Assert
             Assert.AreEqual(expected, actual);
@@ -41,7 +41,7 @@ namespace SEO_WebApi_Test
             var expected = string.Empty;
 
             // Act
-            var actual = _webScrapper.GetHTMLText(url);
+            var actual = _webScrapper.GetHTMLText(url).Result;
 
             // Assert
             Assert.AreEqual(expected, actual);
@@ -58,7 +58,7 @@ namespace SEO_WebApi_Test
             var expected = true;
 
             // Act
-            var actual = _webScrapper.GetHTMLText(url).Length > 0;
+            var actual = _webScrapper.GetHTMLText(url).Result.Length > 0;
 
             // Assert
             Assert.AreEqual(expected, actual);

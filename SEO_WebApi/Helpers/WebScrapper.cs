@@ -1,5 +1,6 @@
 ﻿using SEO_WebApi.Extentions;
 using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace SEO_WebApi.Helpers
 {
@@ -10,10 +11,10 @@ namespace SEO_WebApi.Helpers
         /// </summary>
         /// <param name="url"></param>
         /// <returns></returns>
-        public string GetHTMLText(string url)
+        public Task<string> GetHTMLText(string url)
         {
             if (url.IsNullOrEmpty())
-                return string.Empty;
+                return Task.FromResult(string.Empty);
 
             using (HttpClient client = new HttpClient())
             {
@@ -25,7 +26,7 @@ namespace SEO_WebApi.Helpers
                 {
                     using (HttpContent content = response.Content)
                     {
-                        return content.ReadAsStringAsync().Result;
+                        return content.ReadAsStringAsync();
                     }
                 }
             }

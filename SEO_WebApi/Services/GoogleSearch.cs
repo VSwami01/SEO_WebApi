@@ -2,6 +2,7 @@
 using SEO_WebApi.Helpers;
 using SEO_WebApi.Models;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SEO_WebApi.Services
 {
@@ -27,14 +28,14 @@ namespace SEO_WebApi.Services
         /// </summary>
         /// <param name="searchText"></param>
         /// <returns></returns>
-        public IEnumerable<string> GetAllLinks(string searchText)
+        public async Task<IEnumerable<string>> GetAllLinksAsync(string searchText)
         {
             var urlListFromGoogleSearch = new List<string>();
 
             if (searchText.IsNullOrEmpty())
                 return urlListFromGoogleSearch;
 
-            var htmlText = _webScrapper.GetHTMLText(CreateGoogleSearchURL(searchText));
+            var htmlText = await _webScrapper.GetHTMLText(CreateGoogleSearchURL(searchText));
 
             var cites = _regexHelper.GetAllCiteTags(htmlText);
 
@@ -53,9 +54,9 @@ namespace SEO_WebApi.Services
         /// <param name="searchText"></param>
         /// <param name="urlToMatch"></param>
         /// <returns></returns>
-        public SearchResult GetURLRanks(string searchText, string urlToMatch)
+        public async Task<SearchResult> GetURLRanksAsync(string searchText, string urlToMatch)
         {
-            var links = GetAllLinks(searchText);
+            var links = await GetAllLinksAsync(searchText);
 
             return new SearchResult()
             {
