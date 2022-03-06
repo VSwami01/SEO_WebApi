@@ -10,7 +10,7 @@ namespace SEO_WebApi_Test
         private readonly IHtmlHelper _htmlHelper;
         public HtmlHelperTest()
         {
-            _htmlHelper = new HtmlHelper();
+            _htmlHelper = new HtmlHelper(new RegexHelper());
         }
 
         /// <summary>

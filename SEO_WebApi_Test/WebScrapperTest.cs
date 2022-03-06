@@ -1,5 +1,5 @@
 using NUnit.Framework;
-using SEO_WebApi.Helpers;
+using SEO_WebApi.Services;
 
 namespace SEO_WebApi_Test
 {
@@ -11,7 +11,6 @@ namespace SEO_WebApi_Test
         {
             _webScrapper = new WebScrapper();
         }
-
 
         /// <summary>
         /// Test with empty text parameter returning empty
