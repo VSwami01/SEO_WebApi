@@ -6,7 +6,6 @@ namespace SEO_WebApi.Helpers
 {
     public class RegexHelper : IRegexHelper
     {
-        const string REGEX_CITE_TAG = ("<cite (.*)>(.*)</cite>");
         const string REGEX_URL = @"((http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&amp;:/~\+#]*[\w\-\@?^=%&amp;/~\+#])?)";
 
         /// <summary>
@@ -17,16 +16,6 @@ namespace SEO_WebApi.Helpers
         public IList<string> GetAllUrls(string text)
         {
             return GetAllMatch(text, REGEX_URL);
-        }
-
-        /// <summary>
-        /// Apply regex to get all cite tags from the string
-        /// </summary>
-        /// <param name="text"></param>
-        /// <returns></returns>
-        public IList<string> GetAllCiteTags(string text)
-        {
-            return GetAllMatch(text, REGEX_CITE_TAG);
         }
 
         /// <summary>

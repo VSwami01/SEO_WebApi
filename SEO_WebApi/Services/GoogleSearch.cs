@@ -1,4 +1,5 @@
-﻿using SEO_WebApi.Extentions;
+﻿using SEO_WebApi.Constants;
+using SEO_WebApi.Extentions;
 using SEO_WebApi.Helpers;
 using SEO_WebApi.Models;
 using System.Collections.Generic;
@@ -7,20 +8,23 @@ using System.Threading.Tasks;
 namespace SEO_WebApi.Services
 {
     public class GoogleSearch : IGoogleSearch
-    {
+    {       
+        const string GOOGLE_SEARCH_BASE_URL = "https://www.google.com.au/search?num=100&q=";
+        
         private readonly IWebScrapper _webScrapper;
         private readonly IRegexHelper _regexHelper;
-        const string GOOGLE_SEARCH_BASE_URL = "https://www.google.com.au/search?num=100&q=";
-
+        private readonly IHtmlHelper _htmlHelper;
+  
         private readonly List<string> _blackListed = new List<string>
         {
             "http://www.w3.org/2000/svg"
         };
 
-        public GoogleSearch(IWebScrapper webScrapper, IRegexHelper regexHelper)
+        public GoogleSearch(IWebScrapper webScrapper, IRegexHelper regexHelper, IHtmlHelper htmlHelper)
         {
             _webScrapper = webScrapper;
             _regexHelper = regexHelper;
+            _htmlHelper = htmlHelper;
         }
 
         /// <summary>
@@ -37,10 +41,7 @@ namespace SEO_WebApi.Services
 
             var htmlText = await _webScrapper.GetHTMLText(CreateGoogleSearchURL(searchText));
 
-            var cites = _regexHelper.GetAllCiteTags(htmlText);
-
-            foreach (var cite in cites)
-                urlListFromGoogleSearch.AddRange(_regexHelper.GetAllUrls(cite));
+            urlListFromGoogleSearch.AddRange(_htmlHelper.GetLinksInsideAllCiteTags(htmlText));
 
             urlListFromGoogleSearch.RemoveAll(_blackListed.Contains);
 

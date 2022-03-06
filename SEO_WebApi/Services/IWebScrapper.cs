@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace SEO_WebApi.Helpers
+namespace SEO_WebApi.Services
 {
     public interface IWebScrapper
     {

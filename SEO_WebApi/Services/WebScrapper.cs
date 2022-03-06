@@ -2,12 +2,12 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace SEO_WebApi.Helpers
+namespace SEO_WebApi.Services
 {
     public class WebScrapper : IWebScrapper
     {
         /// <summary>
-        /// Get all html of the gicen url
+        /// Get all html of the given url
         /// </summary>
         /// <param name="url"></param>
         /// <returns></returns>

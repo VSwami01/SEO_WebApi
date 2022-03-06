@@ -22,14 +22,17 @@ namespace SEO_WebApi.Middleware
                 await context.Response.WriteAsync("Api Key was not provided ");
                 return;
             }
+
             var appSettings = context.RequestServices.GetRequiredService<IConfiguration>();
             var apiKey = appSettings.GetValue<string>(APIKEY);
+
             if (!apiKey.Equals(extractedApiKey))
             {
                 context.Response.StatusCode = 401;
                 await context.Response.WriteAsync("Unauthorized client");
                 return;
             }
+
             await _next(context);
         }
     }
