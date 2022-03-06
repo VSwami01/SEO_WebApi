@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using SEO_WebApi.Models;
 using SEO_WebApi.Services;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace SEO_WebApi.Controllers

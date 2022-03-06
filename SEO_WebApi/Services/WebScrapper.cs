@@ -16,15 +16,15 @@ namespace SEO_WebApi.Services
             if (url.IsNullOrEmpty())
                 return Task.FromResult(string.Empty);
 
-            using (HttpClient client = new HttpClient())
+            using (var client = new HttpClient())
             {
                 // changing user-agent to something that Chrome uses. This gets the complete html along with <cite> tags
                 // https://stackoverflow.com/questions/53601463/why-does-the-html-downloaded-by-webclient-differ-from-chromes-view-source-pag
                 client.DefaultRequestHeaders.Add("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36");
 
-                using (HttpResponseMessage response = client.GetAsync(url).Result)
+                using (var response = client.GetAsync(url).Result)
                 {
-                    using (HttpContent content = response.Content)
+                    using (var content = response.Content)
                     {
                         return content.ReadAsStringAsync();
                     }

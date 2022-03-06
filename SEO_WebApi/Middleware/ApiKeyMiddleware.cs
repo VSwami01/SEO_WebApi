@@ -19,7 +19,9 @@ namespace SEO_WebApi.Middleware
                     var extractedApiKey))
             {
                 context.Response.StatusCode = 401;
+
                 await context.Response.WriteAsync("Api Key was not provided ");
+                
                 return;
             }
 
@@ -29,7 +31,9 @@ namespace SEO_WebApi.Middleware
             if (!apiKey.Equals(extractedApiKey))
             {
                 context.Response.StatusCode = 401;
+                
                 await context.Response.WriteAsync("Unauthorized client");
+                
                 return;
             }
 

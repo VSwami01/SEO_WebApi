@@ -100,7 +100,7 @@ namespace SEO_WebApi_Test
                 "three",
                 "four"
             };
-            string stringMatch = "three";
+            var stringMatch = "three";
             var expected = new List<int> { 3 };
 
             // Act
@@ -126,7 +126,7 @@ namespace SEO_WebApi_Test
                 "four",
                 "two",
             };
-            string stringMatch = "two";
+            var stringMatch = "two";
             var expected = new List<int> { 2, 3, 6 };
 
             // Act
@@ -152,7 +152,7 @@ namespace SEO_WebApi_Test
                 "four",
                 "two",
             };
-            string stringMatch = "seven";
+            var stringMatch = "seven";
             var expected = new List<int> { };
 
             // Act

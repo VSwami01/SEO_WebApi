@@ -95,7 +95,7 @@ namespace SEO_WebApi_Test
         {
             // Arrange
             var htmlText = "<cite>test</cite>";
-            string htmlTag = HtmlTags.CITE;
+            var htmlTag = HtmlTags.CITE;
             var expected = new List<string>()
             {
                 "<cite>test</cite>"
@@ -116,7 +116,7 @@ namespace SEO_WebApi_Test
         {
             // Arrange
             var htmlText = "<cite>test 1</cite><cite>test 2</cite><cite>test 3</cite>";
-            string htmlTag = HtmlTags.CITE;
+            var htmlTag = HtmlTags.CITE;
             var expected = new List<string>()
             {
                 "<cite>test 1</cite>",

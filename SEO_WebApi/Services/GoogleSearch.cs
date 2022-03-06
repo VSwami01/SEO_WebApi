@@ -1,5 +1,4 @@
-﻿using SEO_WebApi.Constants;
-using SEO_WebApi.Extentions;
+﻿using SEO_WebApi.Extentions;
 using SEO_WebApi.Helpers;
 using SEO_WebApi.Models;
 using System.Collections.Generic;
@@ -9,10 +8,8 @@ namespace SEO_WebApi.Services
 {
     public class GoogleSearch : IGoogleSearch
     {       
-        const string GOOGLE_SEARCH_BASE_URL = "https://www.google.com.au/search?num=100&q=";
-        
+        private const string GOOGLE_SEARCH_BASE_URL = "https://www.google.com.au/search?num=100&q=";
         private readonly IWebScrapper _webScrapper;
-        private readonly IRegexHelper _regexHelper;
         private readonly IHtmlHelper _htmlHelper;
   
         private readonly List<string> _blackListed = new List<string>
@@ -23,7 +20,6 @@ namespace SEO_WebApi.Services
         public GoogleSearch(IWebScrapper webScrapper, IRegexHelper regexHelper, IHtmlHelper htmlHelper)
         {
             _webScrapper = webScrapper;
-            _regexHelper = regexHelper;
             _htmlHelper = htmlHelper;
         }
 

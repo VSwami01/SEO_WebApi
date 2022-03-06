@@ -25,10 +25,10 @@ namespace SEO_WebApi.Helpers
             if (htmlText.IsNullOrEmpty() || htmlTag.IsNullOrEmpty())
                 return matchedTags;
 
-            string startTag = string.Format("<{0}", htmlTag);
-            string endTag = string.Format("</{0}>", htmlTag);
+            var startTag = string.Format("<{0}", htmlTag);
+            var endTag = string.Format("</{0}>", htmlTag);
 
-            int startIndex = htmlText.IndexOf(startTag);
+            var startIndex = htmlText.IndexOf(startTag);
             int endIndex;
 
             while (startIndex >= 0)
