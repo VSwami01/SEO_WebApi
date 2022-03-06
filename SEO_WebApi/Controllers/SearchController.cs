@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using SEO_WebApi.Models;
 using SEO_WebApi.Services;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -21,15 +22,33 @@ namespace SEO_WebApi.Controllers
         }
 
         [HttpGet("GetURLRanks")]
-        public async Task<SearchResult> GetURLRanks(string searchText, string urlToMatch)
+        public async Task<IActionResult> GetURLRanks(string searchText, string urlToMatch)
         {
-            return await _googleSearch.GetURLRanksAsync(searchText, urlToMatch);
+            try
+            {
+                return Ok(await _googleSearch.GetURLRanksAsync(searchText, urlToMatch));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong inside GetURLRanks action: {ex.Message}");
+
+                return StatusCode(500, "Internal server error");
+            }
         }
 
         [HttpGet("GetAllLinks")]
-        public async Task<IEnumerable<string>> GetAllLinks(string searchText)
+        public async Task<IActionResult> GetAllLinks(string searchText)
         {
-            return await _googleSearch.GetAllLinksAsync(searchText);
+            try
+            {
+                return Ok(await _googleSearch.GetAllLinksAsync(searchText));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Something went wrong inside GetAllLinks action: {ex.Message}");
+
+                return StatusCode(500, "Internal server error");
+            }
         }
     }
 }

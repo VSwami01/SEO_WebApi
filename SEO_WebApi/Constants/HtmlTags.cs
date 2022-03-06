@@ -2,6 +2,6 @@
 {
     public static class HtmlTags
     {
-        public static string CITE = "cite";
+        public const string CITE = "cite";
     }
 }

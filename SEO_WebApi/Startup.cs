@@ -49,7 +49,8 @@ namespace SEO_WebApi
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "SEO_WebApi v1"));
             }
-            //app.UseMiddleware<ApiKeyMiddleware>();
+
+            app.UseMiddleware<ApiKeyMiddleware>();
 
             app.UseHttpsRedirection();
 
